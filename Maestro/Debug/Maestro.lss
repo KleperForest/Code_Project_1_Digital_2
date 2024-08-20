@@ -1,0 +1,1687 @@
+
+Maestro.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000a  00800100  00000a84  00000b18  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000a84  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000023  0080010a  0080010a  00000b22  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000b22  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000b54  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f8  00000000  00000000  00000b94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000173e  00000000  00000000  00000c8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000ada  00000000  00000000  000023ca  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000bcc  00000000  00000000  00002ea4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000210  00000000  00000000  00003a70  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005a4  00000000  00000000  00003c80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000074b  00000000  00000000  00004224  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000b8  00000000  00000000  0000496f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 01 04 	jmp	0x802	; 0x802 <__vector_18>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 e8       	ldi	r30, 0x84	; 132
+  7c:	fa e0       	ldi	r31, 0x0A	; 10
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	aa 30       	cpi	r26, 0x0A	; 10
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	aa e0       	ldi	r26, 0x0A	; 10
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ad 32       	cpi	r26, 0x2D	; 45
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 59 01 	call	0x2b2	; 0x2b2 <main>
+  9e:	0c 94 40 05 	jmp	0xa80	; 0xa80 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <I2C_Config_MASTER>:
+	
+	address <<= 1;  //Ubica la dirección y
+	address |= 0x01; //habilita para reconocer las llamadas generales de I2C
+	TWAR = address;
+	
+	TWCR = (1 << TWEA) | (1 << TWEN) | (1 << TWIE); //Habilita el BUS, con reconocimiento e interrupción
+  a6:	cf 93       	push	r28
+  a8:	c8 2f       	mov	r28, r24
+  aa:	9a 01       	movw	r18, r20
+  ac:	ab 01       	movw	r20, r22
+  ae:	87 b1       	in	r24, 0x07	; 7
+  b0:	8f 7c       	andi	r24, 0xCF	; 207
+  b2:	87 b9       	out	0x07, r24	; 7
+  b4:	60 e0       	ldi	r22, 0x00	; 0
+  b6:	74 e2       	ldi	r23, 0x24	; 36
+  b8:	84 ef       	ldi	r24, 0xF4	; 244
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	0e 94 de 04 	call	0x9bc	; 0x9bc <__udivmodsi4>
+  c0:	ca 01       	movw	r24, r20
+  c2:	b9 01       	movw	r22, r18
+  c4:	60 51       	subi	r22, 0x10	; 16
+  c6:	71 09       	sbc	r23, r1
+  c8:	81 09       	sbc	r24, r1
+  ca:	91 09       	sbc	r25, r1
+  cc:	2c 2f       	mov	r18, r28
+  ce:	30 e0       	ldi	r19, 0x00	; 0
+  d0:	22 0f       	add	r18, r18
+  d2:	33 1f       	adc	r19, r19
+  d4:	03 2e       	mov	r0, r19
+  d6:	00 0c       	add	r0, r0
+  d8:	44 0b       	sbc	r20, r20
+  da:	55 0b       	sbc	r21, r21
+  dc:	0e 94 de 04 	call	0x9bc	; 0x9bc <__udivmodsi4>
+  e0:	20 93 b8 00 	sts	0x00B8, r18	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
+  e4:	c4 30       	cpi	r28, 0x04	; 4
+  e6:	79 f0       	breq	.+30     	; 0x106 <I2C_Config_MASTER+0x60>
+  e8:	18 f4       	brcc	.+6      	; 0xf0 <I2C_Config_MASTER+0x4a>
+  ea:	c1 30       	cpi	r28, 0x01	; 1
+  ec:	31 f0       	breq	.+12     	; 0xfa <I2C_Config_MASTER+0x54>
+  ee:	23 c0       	rjmp	.+70     	; 0x136 <I2C_Config_MASTER+0x90>
+  f0:	c0 31       	cpi	r28, 0x10	; 16
+  f2:	91 f0       	breq	.+36     	; 0x118 <I2C_Config_MASTER+0x72>
+  f4:	c0 34       	cpi	r28, 0x40	; 64
+  f6:	c9 f0       	breq	.+50     	; 0x12a <I2C_Config_MASTER+0x84>
+  f8:	1e c0       	rjmp	.+60     	; 0x136 <I2C_Config_MASTER+0x90>
+  fa:	e9 eb       	ldi	r30, 0xB9	; 185
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	80 81       	ld	r24, Z
+ 100:	8c 7f       	andi	r24, 0xFC	; 252
+ 102:	80 83       	st	Z, r24
+ 104:	1d c0       	rjmp	.+58     	; 0x140 <I2C_Config_MASTER+0x9a>
+ 106:	e9 eb       	ldi	r30, 0xB9	; 185
+ 108:	f0 e0       	ldi	r31, 0x00	; 0
+ 10a:	80 81       	ld	r24, Z
+ 10c:	8d 7f       	andi	r24, 0xFD	; 253
+ 10e:	80 83       	st	Z, r24
+ 110:	80 81       	ld	r24, Z
+ 112:	81 60       	ori	r24, 0x01	; 1
+ 114:	80 83       	st	Z, r24
+ 116:	14 c0       	rjmp	.+40     	; 0x140 <I2C_Config_MASTER+0x9a>
+ 118:	e9 eb       	ldi	r30, 0xB9	; 185
+ 11a:	f0 e0       	ldi	r31, 0x00	; 0
+ 11c:	80 81       	ld	r24, Z
+ 11e:	8e 7f       	andi	r24, 0xFE	; 254
+ 120:	80 83       	st	Z, r24
+ 122:	80 81       	ld	r24, Z
+ 124:	82 60       	ori	r24, 0x02	; 2
+ 126:	80 83       	st	Z, r24
+ 128:	0b c0       	rjmp	.+22     	; 0x140 <I2C_Config_MASTER+0x9a>
+ 12a:	e9 eb       	ldi	r30, 0xB9	; 185
+ 12c:	f0 e0       	ldi	r31, 0x00	; 0
+ 12e:	80 81       	ld	r24, Z
+ 130:	8d 6f       	ori	r24, 0xFD	; 253
+ 132:	80 83       	st	Z, r24
+ 134:	05 c0       	rjmp	.+10     	; 0x140 <I2C_Config_MASTER+0x9a>
+ 136:	e9 eb       	ldi	r30, 0xB9	; 185
+ 138:	f0 e0       	ldi	r31, 0x00	; 0
+ 13a:	80 81       	ld	r24, Z
+ 13c:	8c 7f       	andi	r24, 0xFC	; 252
+ 13e:	80 83       	st	Z, r24
+ 140:	84 e0       	ldi	r24, 0x04	; 4
+ 142:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 146:	cf 91       	pop	r28
+ 148:	08 95       	ret
+
+0000014a <I2C_inicio>:
+}
+
+
+uint8_t I2C_inicio(){
+	uint8_t edo;  //Variable que indica que no se consiguió el bus 
+	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTA); //Condición de inicio
+ 14a:	84 ea       	ldi	r24, 0xA4	; 164
+ 14c:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT)));  //Espera la bandera TWINT
+ 150:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 154:	88 23       	and	r24, r24
+ 156:	e4 f7       	brge	.-8      	; 0x150 <I2C_inicio+0x6>
+	edo = TWSR & 0xF8; //Obtiene el estado, 1 condicion de inicio, o 2 inicio repetido
+ 158:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 15c:	88 7f       	andi	r24, 0xF8	; 248
+	
+	if (edo == 0x08 || edo == 0x10) 
+ 15e:	88 30       	cpi	r24, 0x08	; 8
+ 160:	21 f0       	breq	.+8      	; 0x16a <I2C_inicio+0x20>
+ 162:	80 31       	cpi	r24, 0x10	; 16
+ 164:	19 f4       	brne	.+6      	; 0x16c <I2C_inicio+0x22>
+	{
+		return 1;
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	08 95       	ret
+ 16a:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	
+	return edo;  
+	
+}
+ 16c:	08 95       	ret
+
+0000016e <I2C_EscByte>:
+//Regresa: 0x01 envio sin problemas, edo, si el dato no se envio como se esperaba
+
+uint8_t I2C_EscByte(uint8_t dato){
+	uint8_t edo;
+	
+	TWDR = dato;      //Carga el dato   
+ 16e:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+	TWCR = (1 << TWEN) | (1 << TWINT);   //Inicia el envio
+ 172:	84 e8       	ldi	r24, 0x84	; 132
+ 174:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	
+	while (!(TWCR & (1 << TWINT))); //espera la bandera TWINT
+ 178:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 17c:	88 23       	and	r24, r24
+ 17e:	e4 f7       	brge	.-8      	; 0x178 <I2C_EscByte+0xa>
+	edo = TWSR & 0xF8; //Obtiene el estado
+ 180:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 184:	88 7f       	andi	r24, 0xF8	; 248
+	
+	    //Hay 3 posibilidades de éxito:
+	if (edo == 0x18 || edo == 0x28 || edo == 0x40)  //Transmitió una SLA+W CON ACK, transimitió una SLA+R con ACK, Transmitió un dato con ACK
+ 186:	88 31       	cpi	r24, 0x18	; 24
+ 188:	31 f0       	breq	.+12     	; 0x196 <I2C_EscByte+0x28>
+ 18a:	88 32       	cpi	r24, 0x28	; 40
+ 18c:	31 f0       	breq	.+12     	; 0x19a <I2C_EscByte+0x2c>
+ 18e:	80 34       	cpi	r24, 0x40	; 64
+ 190:	29 f4       	brne	.+10     	; 0x19c <I2C_EscByte+0x2e>
+	{
+		return 0x01;
+ 192:	81 e0       	ldi	r24, 0x01	; 1
+ 194:	08 95       	ret
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+ 198:	08 95       	ret
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	return edo;   //So hay algún error
+	
+}
+ 19c:	08 95       	ret
+
+0000019e <I2C_STOP>:
+
+void I2C_STOP(){
+	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWSTO);  //Condición de Paro
+ 19e:	84 e9       	ldi	r24, 0x94	; 148
+ 1a0:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (TWCR & (1 << TWSTO));  //El bit se limpia por HW
+ 1a4:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 1a8:	84 fd       	sbrc	r24, 4
+ 1aa:	fc cf       	rjmp	.-8      	; 0x1a4 <I2C_STOP+0x6>
+}
+ 1ac:	08 95       	ret
+
+000001ae <I2C_esclavo>:
+
+
+  //Envia datos al esclavo
+void I2C_esclavo(uint8_t dato, uint8_t direction){
+ 1ae:	cf 93       	push	r28
+ 1b0:	c8 2f       	mov	r28, r24
+	esclavo = direction;  //Dirección del esclavo
+	esclavo = esclavo << 1;    //Compone la SLA+W*************************************************************************
+ 1b2:	66 0f       	add	r22, r22
+ 1b4:	60 93 13 01 	sts	0x0113, r22	; 0x800113 <esclavo>
+	
+	
+	aux = I2C_inicio();   //Condicion de inicio
+ 1b8:	0e 94 a5 00 	call	0x14a	; 0x14a <I2C_inicio>
+ 1bc:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <aux>
+	if (aux != 0x01)  //Si no se establece la conexión
+ 1c0:	81 30       	cpi	r24, 0x01	; 1
+ 1c2:	31 f0       	breq	.+12     	; 0x1d0 <I2C_esclavo+0x22>
+	{
+		TWCR |= (1 << TWINT);  //Borrar la bandera
+ 1c4:	ec eb       	ldi	r30, 0xBC	; 188
+ 1c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c8:	80 81       	ld	r24, Z
+ 1ca:	80 68       	ori	r24, 0x80	; 128
+ 1cc:	80 83       	st	Z, r24
+		return;   //No continua
+ 1ce:	10 c0       	rjmp	.+32     	; 0x1f0 <I2C_esclavo+0x42>
+	}
+	
+	aux = I2C_EscByte(esclavo);     //Direcciona con la SLA+W
+ 1d0:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <esclavo>
+ 1d4:	0e 94 b7 00 	call	0x16e	; 0x16e <I2C_EscByte>
+ 1d8:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <aux>
+	if (aux != 0x01)   //Si hay algun error de comunicación
+ 1dc:	81 30       	cpi	r24, 0x01	; 1
+ 1de:	19 f0       	breq	.+6      	; 0x1e6 <I2C_esclavo+0x38>
+	{
+		I2C_STOP();  //No continua, termina la comunicación y la cierra
+ 1e0:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+		return;   
+ 1e4:	05 c0       	rjmp	.+10     	; 0x1f0 <I2C_esclavo+0x42>
+	}
+	
+	I2C_EscByte(dato);   //Envia el dato al esclavo
+ 1e6:	8c 2f       	mov	r24, r28
+ 1e8:	0e 94 b7 00 	call	0x16e	; 0x16e <I2C_EscByte>
+	I2C_STOP();  //No continua, termina la comunicación y la cierra
+ 1ec:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+	
+	
+}
+ 1f0:	cf 91       	pop	r28
+ 1f2:	08 95       	ret
+
+000001f4 <I2C_leer_dato>:
+
+
+// Lee un byte de datos del esclavo I2C
+int I2C_leer_dato(uint8_t direccion_esclavo, int *dato) {
+ 1f4:	cf 93       	push	r28
+ 1f6:	df 93       	push	r29
+	// Iniciar condición de START
+	TWCR = (1 << TWSTA) | (1 << TWEN) | (1 << TWINT);
+ 1f8:	94 ea       	ldi	r25, 0xA4	; 164
+ 1fa:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT))); // Esperar a que se complete
+ 1fe:	90 91 bc 00 	lds	r25, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 202:	99 23       	and	r25, r25
+ 204:	e4 f7       	brge	.-8      	; 0x1fe <I2C_leer_dato+0xa>
+
+	// Verificar condición de START
+	if ((TWSR & 0xF8) != TW_START) {
+ 206:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 20a:	98 7f       	andi	r25, 0xF8	; 248
+ 20c:	98 30       	cpi	r25, 0x08	; 8
+ 20e:	e1 f5       	brne	.+120    	; 0x288 <I2C_leer_dato+0x94>
+		return 1; // Error: No se pudo iniciar la condición de START
+	}
+
+	// Enviar dirección del esclavo con bit de lectura
+	TWDR = SLA_R(direccion_esclavo);
+ 210:	90 e0       	ldi	r25, 0x00	; 0
+ 212:	88 0f       	add	r24, r24
+ 214:	99 1f       	adc	r25, r25
+ 216:	81 60       	ori	r24, 0x01	; 1
+ 218:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+	TWCR = (1 << TWEN) | (1 << TWINT);
+ 21c:	84 e8       	ldi	r24, 0x84	; 132
+ 21e:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT))); // Esperar a que se complete la transmisión de la dirección
+ 222:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 226:	88 23       	and	r24, r24
+ 228:	e4 f7       	brge	.-8      	; 0x222 <I2C_leer_dato+0x2e>
+ 22a:	eb 01       	movw	r28, r22
+
+	// Verificar ACK/NACK de la dirección
+	uint8_t twsr_value = TWSR & 0xF8;
+ 22c:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 230:	88 7f       	andi	r24, 0xF8	; 248
+	if (twsr_value == TW_MR_SLA_NACK) {
+ 232:	88 34       	cpi	r24, 0x48	; 72
+ 234:	29 f4       	brne	.+10     	; 0x240 <I2C_leer_dato+0x4c>
+		I2C_STOP(); // Detener si se recibe un NACK
+ 236:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+		return 1; // Error: NACK recibido
+ 23a:	81 e0       	ldi	r24, 0x01	; 1
+ 23c:	90 e0       	ldi	r25, 0x00	; 0
+ 23e:	26 c0       	rjmp	.+76     	; 0x28c <I2C_leer_dato+0x98>
+		} else if (twsr_value != TW_MR_SLA_ACK) {
+ 240:	80 34       	cpi	r24, 0x40	; 64
+ 242:	29 f0       	breq	.+10     	; 0x24e <I2C_leer_dato+0x5a>
+		I2C_STOP(); // Detener si otro estado inesperado
+ 244:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+		return 1; // Error: Estado inesperado
+ 248:	81 e0       	ldi	r24, 0x01	; 1
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	1f c0       	rjmp	.+62     	; 0x28c <I2C_leer_dato+0x98>
+	}
+
+	// Leer un byte del esclavo
+	TWCR = (1 << TWEN) | (1 << TWINT); // Leer sin ACK (NACK)
+ 24e:	84 e8       	ldi	r24, 0x84	; 132
+ 250:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT))); // Esperar a que se complete la recepción
+ 254:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 258:	88 23       	and	r24, r24
+ 25a:	e4 f7       	brge	.-8      	; 0x254 <I2C_leer_dato+0x60>
+
+	// Verificar estado de recepción
+	twsr_value = TWSR & 0xF8;
+ 25c:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
+ 260:	88 7f       	andi	r24, 0xF8	; 248
+	if (twsr_value != TW_MR_DATA_NACK && twsr_value != TW_MR_DATA_ACK) {
+ 262:	88 35       	cpi	r24, 0x58	; 88
+ 264:	39 f0       	breq	.+14     	; 0x274 <I2C_leer_dato+0x80>
+ 266:	80 35       	cpi	r24, 0x50	; 80
+ 268:	29 f0       	breq	.+10     	; 0x274 <I2C_leer_dato+0x80>
+		I2C_STOP(); // Detener si hay error en la recepción
+ 26a:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+		return 1; // Error en la recepción
+ 26e:	81 e0       	ldi	r24, 0x01	; 1
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	0c c0       	rjmp	.+24     	; 0x28c <I2C_leer_dato+0x98>
+	}
+
+	// Leer el dato recibido
+	*dato = TWDR;
+ 274:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+ 278:	90 e0       	ldi	r25, 0x00	; 0
+ 27a:	99 83       	std	Y+1, r25	; 0x01
+ 27c:	88 83       	st	Y, r24
+
+	// Generar condición de STOP
+      I2C_STOP();
+ 27e:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+  
+	return  *dato; // Éxito
+ 282:	88 81       	ld	r24, Y
+ 284:	99 81       	ldd	r25, Y+1	; 0x01
+ 286:	02 c0       	rjmp	.+4      	; 0x28c <I2C_leer_dato+0x98>
+	TWCR = (1 << TWSTA) | (1 << TWEN) | (1 << TWINT);
+	while (!(TWCR & (1 << TWINT))); // Esperar a que se complete
+
+	// Verificar condición de START
+	if ((TWSR & 0xF8) != TW_START) {
+		return 1; // Error: No se pudo iniciar la condición de START
+ 288:	81 e0       	ldi	r24, 0x01	; 1
+ 28a:	90 e0       	ldi	r25, 0x00	; 0
+
+	// Generar condición de STOP
+      I2C_STOP();
+  
+	return  *dato; // Éxito
+ 28c:	df 91       	pop	r29
+ 28e:	cf 91       	pop	r28
+ 290:	08 95       	ret
+
+00000292 <setup>:
+int  horaencendido = 9, minutoencendido = 2, horaapagado = 0, minutoapagado = 0;
+int dato1;
+ char buffer[16];
+void setup(void);
+void setup(void){
+	cli();  //Apagar interrupciones
+ 292:	f8 94       	cli
+	DDRD = 0xFF;  //Puerto D como salida
+ 294:	8f ef       	ldi	r24, 0xFF	; 255
+ 296:	8a b9       	out	0x0a, r24	; 10
+	DDRC = 0x03;  //Puerto C como salida
+ 298:	83 e0       	ldi	r24, 0x03	; 3
+ 29a:	87 b9       	out	0x07, r24	; 7
+	
+	initUART9600();  //Iniciar UART
+ 29c:	0e 94 90 04 	call	0x920	; 0x920 <initUART9600>
+    I2C_Config_MASTER(4, 200000);  //Configurar  el atmega328P como maestro de I2C
+ 2a0:	40 e4       	ldi	r20, 0x40	; 64
+ 2a2:	5d e0       	ldi	r21, 0x0D	; 13
+ 2a4:	63 e0       	ldi	r22, 0x03	; 3
+ 2a6:	70 e0       	ldi	r23, 0x00	; 0
+ 2a8:	84 e0       	ldi	r24, 0x04	; 4
+ 2aa:	0e 94 53 00 	call	0xa6	; 0xa6 <I2C_Config_MASTER>
+	
+
+	sei(); //Activar interrupciones
+ 2ae:	78 94       	sei
+ 2b0:	08 95       	ret
+
+000002b2 <main>:
+}
+
+
+int main(void)
+{
+    setup();
+ 2b2:	0e 94 49 01 	call	0x292	; 0x292 <setup>
+    while (1) 
+    {
+		
+		// Leer la fecha y hora del RTC DS3231
+		leer_fecha_hora(&segundos, &minutos, &horas, &dia, &fecha, &mes, &anio);
+ 2b6:	0f 2e       	mov	r0, r31
+ 2b8:	f8 e1       	ldi	r31, 0x18	; 24
+ 2ba:	cf 2e       	mov	r12, r31
+ 2bc:	f1 e0       	ldi	r31, 0x01	; 1
+ 2be:	df 2e       	mov	r13, r31
+ 2c0:	f0 2d       	mov	r31, r0
+ 2c2:	0f 2e       	mov	r0, r31
+ 2c4:	fb e2       	ldi	r31, 0x2B	; 43
+ 2c6:	ef 2e       	mov	r14, r31
+ 2c8:	f1 e0       	ldi	r31, 0x01	; 1
+ 2ca:	ff 2e       	mov	r15, r31
+ 2cc:	f0 2d       	mov	r31, r0
+ 2ce:	0a e2       	ldi	r16, 0x2A	; 42
+ 2d0:	11 e0       	ldi	r17, 0x01	; 1
+ 2d2:	25 e1       	ldi	r18, 0x15	; 21
+ 2d4:	31 e0       	ldi	r19, 0x01	; 1
+ 2d6:	44 e1       	ldi	r20, 0x14	; 20
+ 2d8:	51 e0       	ldi	r21, 0x01	; 1
+ 2da:	6c e2       	ldi	r22, 0x2C	; 44
+ 2dc:	71 e0       	ldi	r23, 0x01	; 1
+ 2de:	89 e1       	ldi	r24, 0x19	; 25
+ 2e0:	91 e0       	ldi	r25, 0x01	; 1
+ 2e2:	0e 94 34 04 	call	0x868	; 0x868 <leer_fecha_hora>
+		
+		  //Verificar la hora de encendido y apagado del sistema 
+		if (horaencendido == horas)
+ 2e6:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <horas>
+ 2ea:	90 e0       	ldi	r25, 0x00	; 0
+ 2ec:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <horaencendido>
+ 2f0:	30 91 03 01 	lds	r19, 0x0103	; 0x800103 <horaencendido+0x1>
+ 2f4:	82 17       	cp	r24, r18
+ 2f6:	93 07       	cpc	r25, r19
+ 2f8:	71 f4       	brne	.+28     	; 0x316 <main+0x64>
+		{
+			if (minutoencendido == minutos)
+ 2fa:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <minutos>
+ 2fe:	90 e0       	ldi	r25, 0x00	; 0
+ 300:	20 91 00 01 	lds	r18, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 304:	30 91 01 01 	lds	r19, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 308:	82 17       	cp	r24, r18
+ 30a:	93 07       	cpc	r25, r19
+ 30c:	21 f4       	brne	.+8      	; 0x316 <main+0x64>
+			{
+				I2C_esclavo(10,ESCLAVO1);
+ 30e:	63 e0       	ldi	r22, 0x03	; 3
+ 310:	8a e0       	ldi	r24, 0x0A	; 10
+ 312:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+			}
+		}
+		
+		if (horaapagado == horas)
+ 316:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <horas>
+ 31a:	90 e0       	ldi	r25, 0x00	; 0
+ 31c:	20 91 0c 01 	lds	r18, 0x010C	; 0x80010c <horaapagado>
+ 320:	30 91 0d 01 	lds	r19, 0x010D	; 0x80010d <horaapagado+0x1>
+ 324:	82 17       	cp	r24, r18
+ 326:	93 07       	cpc	r25, r19
+ 328:	71 f4       	brne	.+28     	; 0x346 <main+0x94>
+		{
+			if (minutoapagado == minutos)
+ 32a:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <minutos>
+ 32e:	90 e0       	ldi	r25, 0x00	; 0
+ 330:	20 91 0a 01 	lds	r18, 0x010A	; 0x80010a <__data_end>
+ 334:	30 91 0b 01 	lds	r19, 0x010B	; 0x80010b <__data_end+0x1>
+ 338:	82 17       	cp	r24, r18
+ 33a:	93 07       	cpc	r25, r19
+ 33c:	21 f4       	brne	.+8      	; 0x346 <main+0x94>
+			{
+				I2C_esclavo(11, ESCLAVO1);
+ 33e:	63 e0       	ldi	r22, 0x03	; 3
+ 340:	8b e0       	ldi	r24, 0x0B	; 11
+ 342:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+		
+		
+		
+		
+		 
+		if (receivedChar != 0)   //Cada vez que se tiene una entrada por UART
+ 346:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 34a:	88 23       	and	r24, r24
+ 34c:	09 f4       	brne	.+2      	; 0x350 <main+0x9e>
+ 34e:	52 c2       	rjmp	.+1188   	; 0x7f4 <__EEPROM_REGION_LENGTH__+0x3f4>
+		{
+			if (receivedChar == 'A')  //Si se requiere ver la hora y fecha actual del sistema
+ 350:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 354:	81 34       	cpi	r24, 0x41	; 65
+ 356:	c1 f5       	brne	.+112    	; 0x3c8 <main+0x116>
+			{
+				// Imprimir la hora y la fecha
+				//HORA:
+				UART_PrintNum(horas);
+ 358:	80 91 14 01 	lds	r24, 0x0114	; 0x800114 <horas>
+ 35c:	90 e0       	ldi	r25, 0x00	; 0
+ 35e:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeUART(':');
+ 362:	8a e3       	ldi	r24, 0x3A	; 58
+ 364:	0e 94 bc 04 	call	0x978	; 0x978 <writeUART>
+				UART_PrintNum(minutos);
+ 368:	80 91 2c 01 	lds	r24, 0x012C	; 0x80012c <minutos>
+ 36c:	90 e0       	ldi	r25, 0x00	; 0
+ 36e:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeUART(':');
+ 372:	8a e3       	ldi	r24, 0x3A	; 58
+ 374:	0e 94 bc 04 	call	0x978	; 0x978 <writeUART>
+				UART_PrintNum(segundos);
+ 378:	80 91 19 01 	lds	r24, 0x0119	; 0x800119 <segundos>
+ 37c:	90 e0       	ldi	r25, 0x00	; 0
+ 37e:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART(" ");
+ 382:	84 e0       	ldi	r24, 0x04	; 4
+ 384:	91 e0       	ldi	r25, 0x01	; 1
+ 386:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART("_");    //Separador de fecha y hora
+ 38a:	86 e0       	ldi	r24, 0x06	; 6
+ 38c:	91 e0       	ldi	r25, 0x01	; 1
+ 38e:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				//FECHA
+				UART_PrintNum(fecha);
+ 392:	80 91 2a 01 	lds	r24, 0x012A	; 0x80012a <fecha>
+ 396:	90 e0       	ldi	r25, 0x00	; 0
+ 398:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeUART('/');
+ 39c:	8f e2       	ldi	r24, 0x2F	; 47
+ 39e:	0e 94 bc 04 	call	0x978	; 0x978 <writeUART>
+				UART_PrintNum(mes);
+ 3a2:	80 91 2b 01 	lds	r24, 0x012B	; 0x80012b <mes>
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeUART('/');
+ 3ac:	8f e2       	ldi	r24, 0x2F	; 47
+ 3ae:	0e 94 bc 04 	call	0x978	; 0x978 <writeUART>
+				UART_PrintNum(anio + 2000);  // Asumiendo que el año es en formato 2 dígitos y se quiere imprimir en formato 4 dígitos
+ 3b2:	80 91 18 01 	lds	r24, 0x0118	; 0x800118 <anio>
+ 3b6:	90 e0       	ldi	r25, 0x00	; 0
+ 3b8:	80 53       	subi	r24, 0x30	; 48
+ 3ba:	98 4f       	sbci	r25, 0xF8	; 248
+ 3bc:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART("\n");
+ 3c0:	88 e0       	ldi	r24, 0x08	; 8
+ 3c2:	91 e0       	ldi	r25, 0x01	; 1
+ 3c4:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+			}
+			
+			if (receivedChar == 'B')  //Si se requiere manejar el brazo robotico individual
+ 3c8:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 3cc:	82 34       	cpi	r24, 0x42	; 66
+ 3ce:	19 f4       	brne	.+6      	; 0x3d6 <main+0x124>
+			{
+				brazo = 1;
+ 3d0:	81 e0       	ldi	r24, 0x01	; 1
+ 3d2:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <brazo>
+			}
+			
+			if (brazo == 1)    //Si se activa la función de manejar el brazo con los jostick
+ 3d6:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <brazo>
+ 3da:	81 30       	cpi	r24, 0x01	; 1
+ 3dc:	09 f0       	breq	.+2      	; 0x3e0 <main+0x12e>
+ 3de:	40 c0       	rjmp	.+128    	; 0x460 <__EEPROM_REGION_LENGTH__+0x60>
+			{
+				if (receivedChar == 'C')
+ 3e0:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 3e4:	83 34       	cpi	r24, 0x43	; 67
+ 3e6:	21 f4       	brne	.+8      	; 0x3f0 <main+0x13e>
+				{
+					I2C_esclavo(1,ESCLAVO1);
+ 3e8:	63 e0       	ldi	r22, 0x03	; 3
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				
+					
+				}
+				
+				if (receivedChar == 'D')
+ 3f0:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 3f4:	84 34       	cpi	r24, 0x44	; 68
+ 3f6:	21 f4       	brne	.+8      	; 0x400 <__EEPROM_REGION_LENGTH__>
+				{
+					I2C_esclavo(2,ESCLAVO1);
+ 3f8:	63 e0       	ldi	r22, 0x03	; 3
+ 3fa:	82 e0       	ldi	r24, 0x02	; 2
+ 3fc:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+					
+					
+				}
+				
+				if (receivedChar == 'E')
+ 400:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 404:	85 34       	cpi	r24, 0x45	; 69
+ 406:	21 f4       	brne	.+8      	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+				{
+					I2C_esclavo(3,ESCLAVO1);
+ 408:	63 e0       	ldi	r22, 0x03	; 3
+ 40a:	83 e0       	ldi	r24, 0x03	; 3
+ 40c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				if (receivedChar == 'F')
+ 410:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 414:	86 34       	cpi	r24, 0x46	; 70
+ 416:	21 f4       	brne	.+8      	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+				{
+					
+					I2C_esclavo(4,ESCLAVO1);
+ 418:	63 e0       	ldi	r22, 0x03	; 3
+ 41a:	84 e0       	ldi	r24, 0x04	; 4
+ 41c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				
+				if (receivedChar == 'G')
+ 420:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 424:	87 34       	cpi	r24, 0x47	; 71
+ 426:	21 f4       	brne	.+8      	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+				{
+					I2C_esclavo(5,ESCLAVO1);
+ 428:	63 e0       	ldi	r22, 0x03	; 3
+ 42a:	85 e0       	ldi	r24, 0x05	; 5
+ 42c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				
+				if (receivedChar == 'H')
+ 430:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 434:	88 34       	cpi	r24, 0x48	; 72
+ 436:	21 f4       	brne	.+8      	; 0x440 <__EEPROM_REGION_LENGTH__+0x40>
+				{
+					I2C_esclavo(6,ESCLAVO1);
+ 438:	63 e0       	ldi	r22, 0x03	; 3
+ 43a:	86 e0       	ldi	r24, 0x06	; 6
+ 43c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				if (receivedChar == 'I')
+ 440:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 444:	89 34       	cpi	r24, 0x49	; 73
+ 446:	21 f4       	brne	.+8      	; 0x450 <__EEPROM_REGION_LENGTH__+0x50>
+				{
+					I2C_esclavo(7,ESCLAVO1);
+ 448:	63 e0       	ldi	r22, 0x03	; 3
+ 44a:	87 e0       	ldi	r24, 0x07	; 7
+ 44c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				if (receivedChar == 'J')
+ 450:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 454:	8a 34       	cpi	r24, 0x4A	; 74
+ 456:	21 f4       	brne	.+8      	; 0x460 <__EEPROM_REGION_LENGTH__+0x60>
+				{
+					I2C_esclavo(8,ESCLAVO1);
+ 458:	63 e0       	ldi	r22, 0x03	; 3
+ 45a:	88 e0       	ldi	r24, 0x08	; 8
+ 45c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+			}
+			
+			if (receivedChar == 'R') //Si se desea manipular las llantas de la máquina
+ 460:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 464:	82 35       	cpi	r24, 0x52	; 82
+ 466:	19 f4       	brne	.+6      	; 0x46e <__EEPROM_REGION_LENGTH__+0x6e>
+			{
+				brazo = 2;     //Desactivar manejar el brazo de manera individual y colocar las llantas
+ 468:	82 e0       	ldi	r24, 0x02	; 2
+ 46a:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <brazo>
+				
+			}
+			
+			if (brazo == 2)
+ 46e:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <brazo>
+ 472:	82 30       	cpi	r24, 0x02	; 2
+ 474:	01 f5       	brne	.+64     	; 0x4b6 <__EEPROM_REGION_LENGTH__+0xb6>
+			{
+				if (receivedChar == 'E')
+ 476:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 47a:	85 34       	cpi	r24, 0x45	; 69
+ 47c:	21 f4       	brne	.+8      	; 0x486 <__EEPROM_REGION_LENGTH__+0x86>
+				{
+					I2C_esclavo(1,ESCLAVO2);
+ 47e:	62 e0       	ldi	r22, 0x02	; 2
+ 480:	81 e0       	ldi	r24, 0x01	; 1
+ 482:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				if (receivedChar == 'F')
+ 486:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 48a:	86 34       	cpi	r24, 0x46	; 70
+ 48c:	21 f4       	brne	.+8      	; 0x496 <__EEPROM_REGION_LENGTH__+0x96>
+				{
+					
+					I2C_esclavo(2,ESCLAVO2);
+ 48e:	62 e0       	ldi	r22, 0x02	; 2
+ 490:	82 e0       	ldi	r24, 0x02	; 2
+ 492:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				
+				if (receivedChar == 'G')
+ 496:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 49a:	87 34       	cpi	r24, 0x47	; 71
+ 49c:	21 f4       	brne	.+8      	; 0x4a6 <__EEPROM_REGION_LENGTH__+0xa6>
+				{
+					I2C_esclavo(3,ESCLAVO2);
+ 49e:	62 e0       	ldi	r22, 0x02	; 2
+ 4a0:	83 e0       	ldi	r24, 0x03	; 3
+ 4a2:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+				
+				
+				if (receivedChar == 'H')
+ 4a6:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 4aa:	88 34       	cpi	r24, 0x48	; 72
+ 4ac:	21 f4       	brne	.+8      	; 0x4b6 <__EEPROM_REGION_LENGTH__+0xb6>
+				{
+					I2C_esclavo(4,ESCLAVO2);
+ 4ae:	62 e0       	ldi	r22, 0x02	; 2
+ 4b0:	84 e0       	ldi	r24, 0x04	; 4
+ 4b2:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_esclavo>
+				}
+			}
+			
+			if (receivedChar == 'T') //Si se desea cambiar la hora de encendido de la banda transportadora
+ 4b6:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 4ba:	84 35       	cpi	r24, 0x54	; 84
+ 4bc:	09 f0       	breq	.+2      	; 0x4c0 <__EEPROM_REGION_LENGTH__+0xc0>
+ 4be:	5b c0       	rjmp	.+182    	; 0x576 <__EEPROM_REGION_LENGTH__+0x176>
+			{
+				brazo = 3;     //Activar cambio de hora y minuto
+ 4c0:	83 e0       	ldi	r24, 0x03	; 3
+ 4c2:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <brazo>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4c6:	8f e1       	ldi	r24, 0x1F	; 31
+ 4c8:	9e e4       	ldi	r25, 0x4E	; 78
+ 4ca:	01 97       	sbiw	r24, 0x01	; 1
+ 4cc:	f1 f7       	brne	.-4      	; 0x4ca <__EEPROM_REGION_LENGTH__+0xca>
+ 4ce:	00 c0       	rjmp	.+0      	; 0x4d0 <__EEPROM_REGION_LENGTH__+0xd0>
+ 4d0:	00 00       	nop
+				_delay_ms(5);
+				UART_PrintNum(horaencendido);
+ 4d2:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <horaencendido>
+ 4d6:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <horaencendido+0x1>
+ 4da:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART(" ");
+ 4de:	84 e0       	ldi	r24, 0x04	; 4
+ 4e0:	91 e0       	ldi	r25, 0x01	; 1
+ 4e2:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 4e6:	84 e0       	ldi	r24, 0x04	; 4
+ 4e8:	91 e0       	ldi	r25, 0x01	; 1
+ 4ea:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 4ee:	84 e0       	ldi	r24, 0x04	; 4
+ 4f0:	91 e0       	ldi	r25, 0x01	; 1
+ 4f2:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 4f6:	84 e0       	ldi	r24, 0x04	; 4
+ 4f8:	91 e0       	ldi	r25, 0x01	; 1
+ 4fa:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 4fe:	84 e0       	ldi	r24, 0x04	; 4
+ 500:	91 e0       	ldi	r25, 0x01	; 1
+ 502:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 506:	84 e0       	ldi	r24, 0x04	; 4
+ 508:	91 e0       	ldi	r25, 0x01	; 1
+ 50a:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 50e:	84 e0       	ldi	r24, 0x04	; 4
+ 510:	91 e0       	ldi	r25, 0x01	; 1
+ 512:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART("_");    //Separador de hora y minuto
+ 516:	86 e0       	ldi	r24, 0x06	; 6
+ 518:	91 e0       	ldi	r25, 0x01	; 1
+ 51a:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				UART_PrintNum(minutoencendido);
+ 51e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 522:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 526:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART(" ");
+ 52a:	84 e0       	ldi	r24, 0x04	; 4
+ 52c:	91 e0       	ldi	r25, 0x01	; 1
+ 52e:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 532:	84 e0       	ldi	r24, 0x04	; 4
+ 534:	91 e0       	ldi	r25, 0x01	; 1
+ 536:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 53a:	84 e0       	ldi	r24, 0x04	; 4
+ 53c:	91 e0       	ldi	r25, 0x01	; 1
+ 53e:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 542:	84 e0       	ldi	r24, 0x04	; 4
+ 544:	91 e0       	ldi	r25, 0x01	; 1
+ 546:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 54a:	84 e0       	ldi	r24, 0x04	; 4
+ 54c:	91 e0       	ldi	r25, 0x01	; 1
+ 54e:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 552:	84 e0       	ldi	r24, 0x04	; 4
+ 554:	91 e0       	ldi	r25, 0x01	; 1
+ 556:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 55a:	84 e0       	ldi	r24, 0x04	; 4
+ 55c:	91 e0       	ldi	r25, 0x01	; 1
+ 55e:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART("\n");
+ 562:	88 e0       	ldi	r24, 0x08	; 8
+ 564:	91 e0       	ldi	r25, 0x01	; 1
+ 566:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+ 56a:	8f e1       	ldi	r24, 0x1F	; 31
+ 56c:	9e e4       	ldi	r25, 0x4E	; 78
+ 56e:	01 97       	sbiw	r24, 0x01	; 1
+ 570:	f1 f7       	brne	.-4      	; 0x56e <__EEPROM_REGION_LENGTH__+0x16e>
+ 572:	00 c0       	rjmp	.+0      	; 0x574 <__EEPROM_REGION_LENGTH__+0x174>
+ 574:	00 00       	nop
+				_delay_ms(5);
+			}
+			
+			if (brazo == 3)  //Si se desea cambiar la hora de encendido de la banda
+ 576:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <brazo>
+ 57a:	83 30       	cpi	r24, 0x03	; 3
+ 57c:	09 f0       	breq	.+2      	; 0x580 <__EEPROM_REGION_LENGTH__+0x180>
+ 57e:	62 c0       	rjmp	.+196    	; 0x644 <__EEPROM_REGION_LENGTH__+0x244>
+			{
+				if (receivedChar == 'a')
+ 580:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 584:	81 36       	cpi	r24, 0x61	; 97
+ 586:	49 f4       	brne	.+18     	; 0x59a <__EEPROM_REGION_LENGTH__+0x19a>
+				{
+					horaencendido++;
+ 588:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <horaencendido>
+ 58c:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <horaencendido+0x1>
+ 590:	01 96       	adiw	r24, 0x01	; 1
+ 592:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <horaencendido+0x1>
+ 596:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <horaencendido>
+				}
+				if (receivedChar == 'b')
+ 59a:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 59e:	82 36       	cpi	r24, 0x62	; 98
+ 5a0:	49 f4       	brne	.+18     	; 0x5b4 <__EEPROM_REGION_LENGTH__+0x1b4>
+				{
+					horaencendido--;
+ 5a2:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <horaencendido>
+ 5a6:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <horaencendido+0x1>
+ 5aa:	01 97       	sbiw	r24, 0x01	; 1
+ 5ac:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <horaencendido+0x1>
+ 5b0:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <horaencendido>
+				}
+				
+				if (receivedChar == 'c')
+ 5b4:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 5b8:	83 36       	cpi	r24, 0x63	; 99
+ 5ba:	49 f4       	brne	.+18     	; 0x5ce <__EEPROM_REGION_LENGTH__+0x1ce>
+				{
+					minutoencendido++;
+ 5bc:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 5c0:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 5c4:	01 96       	adiw	r24, 0x01	; 1
+ 5c6:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 5ca:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+				}
+				if (receivedChar == 'd')
+ 5ce:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 5d2:	84 36       	cpi	r24, 0x64	; 100
+ 5d4:	49 f4       	brne	.+18     	; 0x5e8 <__EEPROM_REGION_LENGTH__+0x1e8>
+				{
+					minutoencendido--;
+ 5d6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 5da:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 5de:	01 97       	sbiw	r24, 0x01	; 1
+ 5e0:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 5e4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+				}
+				
+				if (horaencendido >= 23)
+ 5e8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <horaencendido>
+ 5ec:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <horaencendido+0x1>
+ 5f0:	47 97       	sbiw	r24, 0x17	; 23
+ 5f2:	34 f0       	brlt	.+12     	; 0x600 <__EEPROM_REGION_LENGTH__+0x200>
+				{
+					horaencendido = 23;
+ 5f4:	87 e1       	ldi	r24, 0x17	; 23
+ 5f6:	90 e0       	ldi	r25, 0x00	; 0
+ 5f8:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <horaencendido+0x1>
+ 5fc:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <horaencendido>
+				}
+				
+				if (horaencendido <= 0)
+ 600:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <horaencendido>
+ 604:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <horaencendido+0x1>
+ 608:	18 16       	cp	r1, r24
+ 60a:	19 06       	cpc	r1, r25
+ 60c:	24 f0       	brlt	.+8      	; 0x616 <__EEPROM_REGION_LENGTH__+0x216>
+				{
+					horaencendido = 0;
+ 60e:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <horaencendido+0x1>
+ 612:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <horaencendido>
+				}
+				
+				if (minutoencendido >= 59)
+ 616:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 61a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 61e:	cb 97       	sbiw	r24, 0x3b	; 59
+ 620:	34 f0       	brlt	.+12     	; 0x62e <__EEPROM_REGION_LENGTH__+0x22e>
+				{
+					minutoencendido = 59;
+ 622:	8b e3       	ldi	r24, 0x3B	; 59
+ 624:	90 e0       	ldi	r25, 0x00	; 0
+ 626:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 62a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+				}
+				
+				if (minutoencendido <= 0)
+ 62e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 632:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 636:	18 16       	cp	r1, r24
+ 638:	19 06       	cpc	r1, r25
+ 63a:	24 f0       	brlt	.+8      	; 0x644 <__EEPROM_REGION_LENGTH__+0x244>
+				{
+					minutoencendido = 0;
+ 63c:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 640:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+				
+				
+			}
+			
+			
+			if (receivedChar == 'Y') //Si se desea cambiar la hora de apagado de la banda transportadora
+ 644:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 648:	89 35       	cpi	r24, 0x59	; 89
+ 64a:	09 f0       	breq	.+2      	; 0x64e <__EEPROM_REGION_LENGTH__+0x24e>
+ 64c:	53 c0       	rjmp	.+166    	; 0x6f4 <__EEPROM_REGION_LENGTH__+0x2f4>
+			{
+				brazo = 4;     //Activar cambio de hora y minuto
+ 64e:	84 e0       	ldi	r24, 0x04	; 4
+ 650:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <brazo>
+ 654:	8f e1       	ldi	r24, 0x1F	; 31
+ 656:	9e e4       	ldi	r25, 0x4E	; 78
+ 658:	01 97       	sbiw	r24, 0x01	; 1
+ 65a:	f1 f7       	brne	.-4      	; 0x658 <__EEPROM_REGION_LENGTH__+0x258>
+ 65c:	00 c0       	rjmp	.+0      	; 0x65e <__EEPROM_REGION_LENGTH__+0x25e>
+ 65e:	00 00       	nop
+				_delay_ms(5);
+				UART_PrintNum(horaapagado);
+ 660:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <horaapagado>
+ 664:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <horaapagado+0x1>
+ 668:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART(" ");
+ 66c:	84 e0       	ldi	r24, 0x04	; 4
+ 66e:	91 e0       	ldi	r25, 0x01	; 1
+ 670:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 674:	84 e0       	ldi	r24, 0x04	; 4
+ 676:	91 e0       	ldi	r25, 0x01	; 1
+ 678:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 67c:	84 e0       	ldi	r24, 0x04	; 4
+ 67e:	91 e0       	ldi	r25, 0x01	; 1
+ 680:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 684:	84 e0       	ldi	r24, 0x04	; 4
+ 686:	91 e0       	ldi	r25, 0x01	; 1
+ 688:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 68c:	84 e0       	ldi	r24, 0x04	; 4
+ 68e:	91 e0       	ldi	r25, 0x01	; 1
+ 690:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 694:	84 e0       	ldi	r24, 0x04	; 4
+ 696:	91 e0       	ldi	r25, 0x01	; 1
+ 698:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 69c:	84 e0       	ldi	r24, 0x04	; 4
+ 69e:	91 e0       	ldi	r25, 0x01	; 1
+ 6a0:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART("_");    //Separador de hora y minuto
+ 6a4:	86 e0       	ldi	r24, 0x06	; 6
+ 6a6:	91 e0       	ldi	r25, 0x01	; 1
+ 6a8:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				UART_PrintNum(minutoapagado);
+ 6ac:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 6b0:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
+ 6b4:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				writeTextUART(" ");
+ 6b8:	84 e0       	ldi	r24, 0x04	; 4
+ 6ba:	91 e0       	ldi	r25, 0x01	; 1
+ 6bc:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 6c0:	84 e0       	ldi	r24, 0x04	; 4
+ 6c2:	91 e0       	ldi	r25, 0x01	; 1
+ 6c4:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 6c8:	84 e0       	ldi	r24, 0x04	; 4
+ 6ca:	91 e0       	ldi	r25, 0x01	; 1
+ 6cc:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 6d0:	84 e0       	ldi	r24, 0x04	; 4
+ 6d2:	91 e0       	ldi	r25, 0x01	; 1
+ 6d4:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART(" ");
+ 6d8:	84 e0       	ldi	r24, 0x04	; 4
+ 6da:	91 e0       	ldi	r25, 0x01	; 1
+ 6dc:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				writeTextUART("\n");
+ 6e0:	88 e0       	ldi	r24, 0x08	; 8
+ 6e2:	91 e0       	ldi	r25, 0x01	; 1
+ 6e4:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+ 6e8:	8f e1       	ldi	r24, 0x1F	; 31
+ 6ea:	9e e4       	ldi	r25, 0x4E	; 78
+ 6ec:	01 97       	sbiw	r24, 0x01	; 1
+ 6ee:	f1 f7       	brne	.-4      	; 0x6ec <__EEPROM_REGION_LENGTH__+0x2ec>
+ 6f0:	00 c0       	rjmp	.+0      	; 0x6f2 <__EEPROM_REGION_LENGTH__+0x2f2>
+ 6f2:	00 00       	nop
+				_delay_ms(5);
+			}
+			
+			if (brazo == 4)  //Si se desea cambiar la hora de apagado de la banda
+ 6f4:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <brazo>
+ 6f8:	84 30       	cpi	r24, 0x04	; 4
+ 6fa:	09 f0       	breq	.+2      	; 0x6fe <__EEPROM_REGION_LENGTH__+0x2fe>
+ 6fc:	62 c0       	rjmp	.+196    	; 0x7c2 <__EEPROM_REGION_LENGTH__+0x3c2>
+			{
+				if (receivedChar == 'a')
+ 6fe:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 702:	81 36       	cpi	r24, 0x61	; 97
+ 704:	49 f4       	brne	.+18     	; 0x718 <__EEPROM_REGION_LENGTH__+0x318>
+				{
+					horaapagado++;
+ 706:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <horaapagado>
+ 70a:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <horaapagado+0x1>
+ 70e:	01 96       	adiw	r24, 0x01	; 1
+ 710:	90 93 0d 01 	sts	0x010D, r25	; 0x80010d <horaapagado+0x1>
+ 714:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <horaapagado>
+				}
+				if (receivedChar == 'b')
+ 718:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 71c:	82 36       	cpi	r24, 0x62	; 98
+ 71e:	49 f4       	brne	.+18     	; 0x732 <__EEPROM_REGION_LENGTH__+0x332>
+				{
+					horaapagado--;
+ 720:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <horaapagado>
+ 724:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <horaapagado+0x1>
+ 728:	01 97       	sbiw	r24, 0x01	; 1
+ 72a:	90 93 0d 01 	sts	0x010D, r25	; 0x80010d <horaapagado+0x1>
+ 72e:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <horaapagado>
+				}
+				
+				if (receivedChar == 'c')
+ 732:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 736:	83 36       	cpi	r24, 0x63	; 99
+ 738:	49 f4       	brne	.+18     	; 0x74c <__EEPROM_REGION_LENGTH__+0x34c>
+				{
+					minutoapagado++;
+ 73a:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 73e:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
+ 742:	01 96       	adiw	r24, 0x01	; 1
+ 744:	90 93 0b 01 	sts	0x010B, r25	; 0x80010b <__data_end+0x1>
+ 748:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <__data_end>
+				}
+				if (receivedChar == 'd')
+ 74c:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 750:	84 36       	cpi	r24, 0x64	; 100
+ 752:	49 f4       	brne	.+18     	; 0x766 <__EEPROM_REGION_LENGTH__+0x366>
+				{
+					minutoapagado--;
+ 754:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 758:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
+ 75c:	01 97       	sbiw	r24, 0x01	; 1
+ 75e:	90 93 0b 01 	sts	0x010B, r25	; 0x80010b <__data_end+0x1>
+ 762:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <__data_end>
+				}
+				
+				if (horaapagado >= 23)
+ 766:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <horaapagado>
+ 76a:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <horaapagado+0x1>
+ 76e:	47 97       	sbiw	r24, 0x17	; 23
+ 770:	34 f0       	brlt	.+12     	; 0x77e <__EEPROM_REGION_LENGTH__+0x37e>
+				{
+					horaapagado = 23;
+ 772:	87 e1       	ldi	r24, 0x17	; 23
+ 774:	90 e0       	ldi	r25, 0x00	; 0
+ 776:	90 93 0d 01 	sts	0x010D, r25	; 0x80010d <horaapagado+0x1>
+ 77a:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <horaapagado>
+				}
+				
+				if (horaapagado <= 0)
+ 77e:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <horaapagado>
+ 782:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <horaapagado+0x1>
+ 786:	18 16       	cp	r1, r24
+ 788:	19 06       	cpc	r1, r25
+ 78a:	24 f0       	brlt	.+8      	; 0x794 <__EEPROM_REGION_LENGTH__+0x394>
+				{
+					horaapagado = 0;
+ 78c:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <horaapagado+0x1>
+ 790:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <horaapagado>
+				}
+				
+				if (minutoapagado >= 59)
+ 794:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 798:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
+ 79c:	cb 97       	sbiw	r24, 0x3b	; 59
+ 79e:	34 f0       	brlt	.+12     	; 0x7ac <__EEPROM_REGION_LENGTH__+0x3ac>
+				{
+					minutoapagado = 59;
+ 7a0:	8b e3       	ldi	r24, 0x3B	; 59
+ 7a2:	90 e0       	ldi	r25, 0x00	; 0
+ 7a4:	90 93 0b 01 	sts	0x010B, r25	; 0x80010b <__data_end+0x1>
+ 7a8:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <__data_end>
+				}
+				
+				if (minutoapagado <= 0)
+ 7ac:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <__data_end>
+ 7b0:	90 91 0b 01 	lds	r25, 0x010B	; 0x80010b <__data_end+0x1>
+ 7b4:	18 16       	cp	r1, r24
+ 7b6:	19 06       	cpc	r1, r25
+ 7b8:	24 f0       	brlt	.+8      	; 0x7c2 <__EEPROM_REGION_LENGTH__+0x3c2>
+				{
+					minutoapagado = 0;
+ 7ba:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <__data_end+0x1>
+ 7be:	10 92 0a 01 	sts	0x010A, r1	; 0x80010a <__data_end>
+				}
+				
+				
+			}
+			
+			if (receivedChar == 'K')
+ 7c2:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <receivedChar>
+ 7c6:	8b 34       	cpi	r24, 0x4B	; 75
+ 7c8:	99 f4       	brne	.+38     	; 0x7f0 <__EEPROM_REGION_LENGTH__+0x3f0>
+			{
+				 dato1 = I2C_leer_dato(ESCLAVO1, &dato1);   //Leer el dato del esclavo 1
+ 7ca:	66 e1       	ldi	r22, 0x16	; 22
+ 7cc:	71 e0       	ldi	r23, 0x01	; 1
+ 7ce:	83 e0       	ldi	r24, 0x03	; 3
+ 7d0:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <I2C_leer_dato>
+ 7d4:	90 93 17 01 	sts	0x0117, r25	; 0x800117 <dato1+0x1>
+ 7d8:	80 93 16 01 	sts	0x0116, r24	; 0x800116 <dato1>
+				UART_PrintNum(dato1);
+ 7dc:	0e 94 c3 04 	call	0x986	; 0x986 <UART_PrintNum>
+				 writeTextUART("_");    //Separador 
+ 7e0:	86 e0       	ldi	r24, 0x06	; 6
+ 7e2:	91 e0       	ldi	r25, 0x01	; 1
+ 7e4:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				 writeTextUART("\n");
+ 7e8:	88 e0       	ldi	r24, 0x08	; 8
+ 7ea:	91 e0       	ldi	r25, 0x01	; 1
+ 7ec:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+				 
+			}
+			
+			receivedChar = 0;
+ 7f0:	10 92 0f 01 	sts	0x010F, r1	; 0x80010f <receivedChar>
+ 7f4:	8f e3       	ldi	r24, 0x3F	; 63
+ 7f6:	9c e9       	ldi	r25, 0x9C	; 156
+ 7f8:	01 97       	sbiw	r24, 0x01	; 1
+ 7fa:	f1 f7       	brne	.-4      	; 0x7f8 <__EEPROM_REGION_LENGTH__+0x3f8>
+ 7fc:	00 c0       	rjmp	.+0      	; 0x7fe <__EEPROM_REGION_LENGTH__+0x3fe>
+ 7fe:	00 00       	nop
+ 800:	5a cd       	rjmp	.-1356   	; 0x2b6 <main+0x4>
+
+00000802 <__vector_18>:
+}
+
+
+
+ISR(USART_RX_vect)
+{
+ 802:	1f 92       	push	r1
+ 804:	0f 92       	push	r0
+ 806:	0f b6       	in	r0, 0x3f	; 63
+ 808:	0f 92       	push	r0
+ 80a:	11 24       	eor	r1, r1
+ 80c:	8f 93       	push	r24
+	receivedChar = UDR0; // Almacena el carácter recibido
+ 80e:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 812:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <receivedChar>
+	
+	while(!(UCSR0A & (1<<UDRE0)));    //Mientras haya caracteres
+ 816:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 81a:	85 ff       	sbrs	r24, 5
+ 81c:	fc cf       	rjmp	.-8      	; 0x816 <__vector_18+0x14>
+	
+}
+ 81e:	8f 91       	pop	r24
+ 820:	0f 90       	pop	r0
+ 822:	0f be       	out	0x3f, r0	; 63
+ 824:	0f 90       	pop	r0
+ 826:	1f 90       	pop	r1
+ 828:	18 95       	reti
+
+0000082a <BCD_to_Decimal>:
+
+	I2C_STOP();
+}
+
+uint8_t BCD_to_Decimal(uint8_t bcd) {
+	return ((bcd >> 4) * 10) + (bcd & 0x0F);
+ 82a:	98 2f       	mov	r25, r24
+ 82c:	92 95       	swap	r25
+ 82e:	9f 70       	andi	r25, 0x0F	; 15
+ 830:	99 0f       	add	r25, r25
+ 832:	29 2f       	mov	r18, r25
+ 834:	22 0f       	add	r18, r18
+ 836:	22 0f       	add	r18, r18
+ 838:	92 0f       	add	r25, r18
+ 83a:	8f 70       	andi	r24, 0x0F	; 15
+}
+ 83c:	89 0f       	add	r24, r25
+ 83e:	08 95       	ret
+
+00000840 <I2C_leerACK>:
+
+
+uint8_t I2C_leerACK() {
+	TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);
+ 840:	84 ec       	ldi	r24, 0xC4	; 196
+ 842:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT)));
+ 846:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 84a:	88 23       	and	r24, r24
+ 84c:	e4 f7       	brge	.-8      	; 0x846 <I2C_leerACK+0x6>
+	return TWDR;
+ 84e:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+}
+ 852:	08 95       	ret
+
+00000854 <I2C_leerNACK>:
+
+uint8_t I2C_leerNACK() {
+	TWCR = (1 << TWINT) | (1 << TWEN);
+ 854:	84 e8       	ldi	r24, 0x84	; 132
+ 856:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+	while (!(TWCR & (1 << TWINT)));
+ 85a:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
+ 85e:	88 23       	and	r24, r24
+ 860:	e4 f7       	brge	.-8      	; 0x85a <I2C_leerNACK+0x6>
+	return TWDR;
+ 862:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
+}
+ 866:	08 95       	ret
+
+00000868 <leer_fecha_hora>:
+
+#define SLA_R(address) ((address << 1) | 1)  // Define la macro SLA_R
+#define SLA_W(address) (address << 1)
+
+// Función para leer la fecha y hora del DS3231
+void leer_fecha_hora(uint8_t *segundos, uint8_t *minutos, uint8_t *horas, uint8_t *dia, uint8_t *fecha, uint8_t *mes, uint8_t *anio) {
+ 868:	6f 92       	push	r6
+ 86a:	7f 92       	push	r7
+ 86c:	8f 92       	push	r8
+ 86e:	9f 92       	push	r9
+ 870:	af 92       	push	r10
+ 872:	bf 92       	push	r11
+ 874:	cf 92       	push	r12
+ 876:	df 92       	push	r13
+ 878:	ef 92       	push	r14
+ 87a:	ff 92       	push	r15
+ 87c:	0f 93       	push	r16
+ 87e:	1f 93       	push	r17
+ 880:	cf 93       	push	r28
+ 882:	df 93       	push	r29
+ 884:	4c 01       	movw	r8, r24
+ 886:	5b 01       	movw	r10, r22
+ 888:	ea 01       	movw	r28, r20
+ 88a:	39 01       	movw	r6, r18
+	I2C_inicio();
+ 88c:	0e 94 a5 00 	call	0x14a	; 0x14a <I2C_inicio>
+	I2C_EscByte(SLA_W(0x68));  // Dirección del esclavo con bit de escritura
+ 890:	80 ed       	ldi	r24, 0xD0	; 208
+ 892:	90 e0       	ldi	r25, 0x00	; 0
+ 894:	0e 94 b7 00 	call	0x16e	; 0x16e <I2C_EscByte>
+	I2C_EscByte(0x00);         // Dirección del primer registro (segundos)
+ 898:	80 e0       	ldi	r24, 0x00	; 0
+ 89a:	90 e0       	ldi	r25, 0x00	; 0
+ 89c:	0e 94 b7 00 	call	0x16e	; 0x16e <I2C_EscByte>
+	I2C_inicio();
+ 8a0:	0e 94 a5 00 	call	0x14a	; 0x14a <I2C_inicio>
+	I2C_EscByte(SLA_R(0x68));  // Dirección del esclavo con bit de lectura
+ 8a4:	81 ed       	ldi	r24, 0xD1	; 209
+ 8a6:	90 e0       	ldi	r25, 0x00	; 0
+ 8a8:	0e 94 b7 00 	call	0x16e	; 0x16e <I2C_EscByte>
+
+	*segundos = BCD_to_Decimal(I2C_leerACK());
+ 8ac:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8b0:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8b4:	f4 01       	movw	r30, r8
+ 8b6:	80 83       	st	Z, r24
+	*minutos = BCD_to_Decimal(I2C_leerACK());
+ 8b8:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8bc:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8c0:	f5 01       	movw	r30, r10
+ 8c2:	80 83       	st	Z, r24
+	*horas = BCD_to_Decimal(I2C_leerACK());
+ 8c4:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8c8:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8cc:	88 83       	st	Y, r24
+	*dia = BCD_to_Decimal(I2C_leerACK());
+ 8ce:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8d2:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8d6:	f3 01       	movw	r30, r6
+ 8d8:	80 83       	st	Z, r24
+	*fecha = BCD_to_Decimal(I2C_leerACK());
+ 8da:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8de:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8e2:	f8 01       	movw	r30, r16
+ 8e4:	80 83       	st	Z, r24
+	*mes = BCD_to_Decimal(I2C_leerACK());
+ 8e6:	0e 94 20 04 	call	0x840	; 0x840 <I2C_leerACK>
+ 8ea:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8ee:	f7 01       	movw	r30, r14
+ 8f0:	80 83       	st	Z, r24
+	*anio = BCD_to_Decimal(I2C_leerNACK());
+ 8f2:	0e 94 2a 04 	call	0x854	; 0x854 <I2C_leerNACK>
+ 8f6:	0e 94 15 04 	call	0x82a	; 0x82a <BCD_to_Decimal>
+ 8fa:	f6 01       	movw	r30, r12
+ 8fc:	80 83       	st	Z, r24
+
+	I2C_STOP();
+ 8fe:	0e 94 cf 00 	call	0x19e	; 0x19e <I2C_STOP>
+}
+ 902:	df 91       	pop	r29
+ 904:	cf 91       	pop	r28
+ 906:	1f 91       	pop	r17
+ 908:	0f 91       	pop	r16
+ 90a:	ff 90       	pop	r15
+ 90c:	ef 90       	pop	r14
+ 90e:	df 90       	pop	r13
+ 910:	cf 90       	pop	r12
+ 912:	bf 90       	pop	r11
+ 914:	af 90       	pop	r10
+ 916:	9f 90       	pop	r9
+ 918:	8f 90       	pop	r8
+ 91a:	7f 90       	pop	r7
+ 91c:	6f 90       	pop	r6
+ 91e:	08 95       	ret
+
+00000920 <initUART9600>:
+#include "UART.h"
+
+void initUART9600()
+{
+	//Paso 1: RX y TX como salida
+	DDRD &= ~(1<<DDD0);
+ 920:	8a b1       	in	r24, 0x0a	; 10
+ 922:	8e 7f       	andi	r24, 0xFE	; 254
+ 924:	8a b9       	out	0x0a, r24	; 10
+	DDRD |= (1<<DDD1);
+ 926:	8a b1       	in	r24, 0x0a	; 10
+ 928:	82 60       	ori	r24, 0x02	; 2
+ 92a:	8a b9       	out	0x0a, r24	; 10
+	
+	//Paso 2:Configurar UCSR0A
+	UCSR0A = 0;
+ 92c:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+	
+	//Paso 3: configurar UCSR0B donde se habilita ISR de recepcion y se habilita RX y TX
+	UCSR0B = 0;
+ 930:	e1 ec       	ldi	r30, 0xC1	; 193
+ 932:	f0 e0       	ldi	r31, 0x00	; 0
+ 934:	10 82       	st	Z, r1
+	UCSR0B |= (1<<RXCIE0) | (1<<RXEN0) | (1<<TXEN0);
+ 936:	80 81       	ld	r24, Z
+ 938:	88 69       	ori	r24, 0x98	; 152
+ 93a:	80 83       	st	Z, r24
+	
+	//Paso 4: Configurar UCSR0C, asincrono, paridad: none, 1 bit stop, data bits de 8 bits
+	UCSR0C = 0;
+ 93c:	e2 ec       	ldi	r30, 0xC2	; 194
+ 93e:	f0 e0       	ldi	r31, 0x00	; 0
+ 940:	10 82       	st	Z, r1
+	UCSR0C |= (1<<UCSZ01) | (1<<UCSZ00);
+ 942:	80 81       	ld	r24, Z
+ 944:	86 60       	ori	r24, 0x06	; 6
+ 946:	80 83       	st	Z, r24
+	
+	//Paso 5: Configurar velocidad de baudrate a 9600
+	UBRR0 = 103;
+ 948:	87 e6       	ldi	r24, 0x67	; 103
+ 94a:	90 e0       	ldi	r25, 0x00	; 0
+ 94c:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 950:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+ 954:	08 95       	ret
+
+00000956 <writeTextUART>:
+	
+}
+
+
+//Funcion de escritura de una cadena de caracteres
+void writeTextUART(char * Texto){
+ 956:	ac 01       	movw	r20, r24
+	uint8_t o;
+	for(o = 0; Texto[o]!= '\0'; o++){
+ 958:	20 e0       	ldi	r18, 0x00	; 0
+ 95a:	07 c0       	rjmp	.+14     	; 0x96a <writeTextUART+0x14>
+		while(!(UCSR0A & (1<<UDRE0)));
+ 95c:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 960:	95 ff       	sbrs	r25, 5
+ 962:	fc cf       	rjmp	.-8      	; 0x95c <writeTextUART+0x6>
+		UDR0 = Texto[o];
+ 964:	30 93 c6 00 	sts	0x00C6, r19	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+
+
+//Funcion de escritura de una cadena de caracteres
+void writeTextUART(char * Texto){
+	uint8_t o;
+	for(o = 0; Texto[o]!= '\0'; o++){
+ 968:	2f 5f       	subi	r18, 0xFF	; 255
+ 96a:	fa 01       	movw	r30, r20
+ 96c:	e2 0f       	add	r30, r18
+ 96e:	f1 1d       	adc	r31, r1
+ 970:	30 81       	ld	r19, Z
+ 972:	31 11       	cpse	r19, r1
+ 974:	f3 cf       	rjmp	.-26     	; 0x95c <writeTextUART+0x6>
+		while(!(UCSR0A & (1<<UDRE0)));
+		UDR0 = Texto[o];
+	}
+}
+ 976:	08 95       	ret
+
+00000978 <writeUART>:
+
+
+//Funcion de escritura de un caracter
+void writeUART(char Caracter)
+{
+	while(!(UCSR0A & (1<<UDRE0)));  //hasta que la bandera este en 1
+ 978:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 97c:	95 ff       	sbrs	r25, 5
+ 97e:	fc cf       	rjmp	.-8      	; 0x978 <writeUART>
+	UDR0 = Caracter;
+ 980:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 984:	08 95       	ret
+
+00000986 <UART_PrintNum>:
+	
+}
+
+void UART_PrintNum(uint16_t num) {
+ 986:	cf 93       	push	r28
+ 988:	df 93       	push	r29
+ 98a:	00 d0       	rcall	.+0      	; 0x98c <UART_PrintNum+0x6>
+ 98c:	00 d0       	rcall	.+0      	; 0x98e <UART_PrintNum+0x8>
+ 98e:	00 d0       	rcall	.+0      	; 0x990 <UART_PrintNum+0xa>
+ 990:	cd b7       	in	r28, 0x3d	; 61
+ 992:	de b7       	in	r29, 0x3e	; 62
+	char buffer[6];
+	itoa(num, buffer, 10);
+ 994:	4a e0       	ldi	r20, 0x0A	; 10
+ 996:	50 e0       	ldi	r21, 0x00	; 0
+ 998:	be 01       	movw	r22, r28
+ 99a:	6f 5f       	subi	r22, 0xFF	; 255
+ 99c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 99e:	0e 94 00 05 	call	0xa00	; 0xa00 <itoa>
+	writeTextUART(buffer);
+ 9a2:	ce 01       	movw	r24, r28
+ 9a4:	01 96       	adiw	r24, 0x01	; 1
+ 9a6:	0e 94 ab 04 	call	0x956	; 0x956 <writeTextUART>
+}
+ 9aa:	26 96       	adiw	r28, 0x06	; 6
+ 9ac:	0f b6       	in	r0, 0x3f	; 63
+ 9ae:	f8 94       	cli
+ 9b0:	de bf       	out	0x3e, r29	; 62
+ 9b2:	0f be       	out	0x3f, r0	; 63
+ 9b4:	cd bf       	out	0x3d, r28	; 61
+ 9b6:	df 91       	pop	r29
+ 9b8:	cf 91       	pop	r28
+ 9ba:	08 95       	ret
+
+000009bc <__udivmodsi4>:
+ 9bc:	a1 e2       	ldi	r26, 0x21	; 33
+ 9be:	1a 2e       	mov	r1, r26
+ 9c0:	aa 1b       	sub	r26, r26
+ 9c2:	bb 1b       	sub	r27, r27
+ 9c4:	fd 01       	movw	r30, r26
+ 9c6:	0d c0       	rjmp	.+26     	; 0x9e2 <__udivmodsi4_ep>
+
+000009c8 <__udivmodsi4_loop>:
+ 9c8:	aa 1f       	adc	r26, r26
+ 9ca:	bb 1f       	adc	r27, r27
+ 9cc:	ee 1f       	adc	r30, r30
+ 9ce:	ff 1f       	adc	r31, r31
+ 9d0:	a2 17       	cp	r26, r18
+ 9d2:	b3 07       	cpc	r27, r19
+ 9d4:	e4 07       	cpc	r30, r20
+ 9d6:	f5 07       	cpc	r31, r21
+ 9d8:	20 f0       	brcs	.+8      	; 0x9e2 <__udivmodsi4_ep>
+ 9da:	a2 1b       	sub	r26, r18
+ 9dc:	b3 0b       	sbc	r27, r19
+ 9de:	e4 0b       	sbc	r30, r20
+ 9e0:	f5 0b       	sbc	r31, r21
+
+000009e2 <__udivmodsi4_ep>:
+ 9e2:	66 1f       	adc	r22, r22
+ 9e4:	77 1f       	adc	r23, r23
+ 9e6:	88 1f       	adc	r24, r24
+ 9e8:	99 1f       	adc	r25, r25
+ 9ea:	1a 94       	dec	r1
+ 9ec:	69 f7       	brne	.-38     	; 0x9c8 <__udivmodsi4_loop>
+ 9ee:	60 95       	com	r22
+ 9f0:	70 95       	com	r23
+ 9f2:	80 95       	com	r24
+ 9f4:	90 95       	com	r25
+ 9f6:	9b 01       	movw	r18, r22
+ 9f8:	ac 01       	movw	r20, r24
+ 9fa:	bd 01       	movw	r22, r26
+ 9fc:	cf 01       	movw	r24, r30
+ 9fe:	08 95       	ret
+
+00000a00 <itoa>:
+ a00:	45 32       	cpi	r20, 0x25	; 37
+ a02:	51 05       	cpc	r21, r1
+ a04:	20 f4       	brcc	.+8      	; 0xa0e <itoa+0xe>
+ a06:	42 30       	cpi	r20, 0x02	; 2
+ a08:	10 f0       	brcs	.+4      	; 0xa0e <itoa+0xe>
+ a0a:	0c 94 0b 05 	jmp	0xa16	; 0xa16 <__itoa_ncheck>
+ a0e:	fb 01       	movw	r30, r22
+ a10:	10 82       	st	Z, r1
+ a12:	cb 01       	movw	r24, r22
+ a14:	08 95       	ret
+
+00000a16 <__itoa_ncheck>:
+ a16:	bb 27       	eor	r27, r27
+ a18:	4a 30       	cpi	r20, 0x0A	; 10
+ a1a:	31 f4       	brne	.+12     	; 0xa28 <__itoa_ncheck+0x12>
+ a1c:	99 23       	and	r25, r25
+ a1e:	22 f4       	brpl	.+8      	; 0xa28 <__itoa_ncheck+0x12>
+ a20:	bd e2       	ldi	r27, 0x2D	; 45
+ a22:	90 95       	com	r25
+ a24:	81 95       	neg	r24
+ a26:	9f 4f       	sbci	r25, 0xFF	; 255
+ a28:	0c 94 17 05 	jmp	0xa2e	; 0xa2e <__utoa_common>
+
+00000a2c <__utoa_ncheck>:
+ a2c:	bb 27       	eor	r27, r27
+
+00000a2e <__utoa_common>:
+ a2e:	fb 01       	movw	r30, r22
+ a30:	55 27       	eor	r21, r21
+ a32:	aa 27       	eor	r26, r26
+ a34:	88 0f       	add	r24, r24
+ a36:	99 1f       	adc	r25, r25
+ a38:	aa 1f       	adc	r26, r26
+ a3a:	a4 17       	cp	r26, r20
+ a3c:	10 f0       	brcs	.+4      	; 0xa42 <__utoa_common+0x14>
+ a3e:	a4 1b       	sub	r26, r20
+ a40:	83 95       	inc	r24
+ a42:	50 51       	subi	r21, 0x10	; 16
+ a44:	b9 f7       	brne	.-18     	; 0xa34 <__utoa_common+0x6>
+ a46:	a0 5d       	subi	r26, 0xD0	; 208
+ a48:	aa 33       	cpi	r26, 0x3A	; 58
+ a4a:	08 f0       	brcs	.+2      	; 0xa4e <__utoa_common+0x20>
+ a4c:	a9 5d       	subi	r26, 0xD9	; 217
+ a4e:	a1 93       	st	Z+, r26
+ a50:	00 97       	sbiw	r24, 0x00	; 0
+ a52:	79 f7       	brne	.-34     	; 0xa32 <__utoa_common+0x4>
+ a54:	b1 11       	cpse	r27, r1
+ a56:	b1 93       	st	Z+, r27
+ a58:	11 92       	st	Z+, r1
+ a5a:	cb 01       	movw	r24, r22
+ a5c:	0c 94 30 05 	jmp	0xa60	; 0xa60 <strrev>
+
+00000a60 <strrev>:
+ a60:	dc 01       	movw	r26, r24
+ a62:	fc 01       	movw	r30, r24
+ a64:	67 2f       	mov	r22, r23
+ a66:	71 91       	ld	r23, Z+
+ a68:	77 23       	and	r23, r23
+ a6a:	e1 f7       	brne	.-8      	; 0xa64 <strrev+0x4>
+ a6c:	32 97       	sbiw	r30, 0x02	; 2
+ a6e:	04 c0       	rjmp	.+8      	; 0xa78 <strrev+0x18>
+ a70:	7c 91       	ld	r23, X
+ a72:	6d 93       	st	X+, r22
+ a74:	70 83       	st	Z, r23
+ a76:	62 91       	ld	r22, -Z
+ a78:	ae 17       	cp	r26, r30
+ a7a:	bf 07       	cpc	r27, r31
+ a7c:	c8 f3       	brcs	.-14     	; 0xa70 <strrev+0x10>
+ a7e:	08 95       	ret
+
+00000a80 <_exit>:
+ a80:	f8 94       	cli
+
+00000a82 <__stop_program>:
+ a82:	ff cf       	rjmp	.-2      	; 0xa82 <__stop_program>
