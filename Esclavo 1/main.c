@@ -5,7 +5,7 @@
 // Proyecto: Proyecto 1: Red de sensores
 // Hardware: Atmega328p
 // Creado: 4/08/2024
-// Última modificación: 15/08/2024
+// Última modificación: 19/08/2024
 //******************************************************************************
   //CODIGO DEL ESCLAVO 1
   //Este esclavo controla el brazo robótico y la banda transportadora
@@ -32,18 +32,23 @@
 
 
 int dato_a_enviarI2C = 0, dato_a_recibirI2C = 0;   //Variables que almacenan los datos a enviar  y recibir por I2C
-int codo = 160, garra = 50, brazo = 80, rota = 150;  //Datos de 0 a 255 para colocar angulos de 0 a 180 a cada servo
-uint8_t sistema_activado = 0;
+int codo = 180, garra = 50, brazo = 40, rota = 150;  //Datos de 0 a 255 para colocar angulos de 0 a 180 a cada servo
+uint8_t sistema_activado = 1, cajas = 0;
+
+
+
 char buffer[16];
+
+uint16_t distance = 0;
  
 void setup(void);
 void setup(void){
 	cli();  //Apagar interrupciones
 	
 	DDRB |= (1 << PORTB2) | (1 << PORTB1) | (1 << PORTB3) | (1 << PORTB4) | ~(1 << PORTB0); //PB1, PB2, PB3 como salida de servos 1,2,3, PB4 como salida de banda transportadora, PB0 entrada sensor de gas
-	DDRD |= (1 << DDD3);   //PD3 como salida de servo 4
-	//PORTB = 0b00000001;		//pull up encendido en PB0
-	
+	DDRD |= (1 << DDD3) |~(1 << DDD2);   //PD3 como salida de servo 4, PD2  como entrada sensor infrarrojo
+
+	 
 	//channelA, conectado a elevar y bajar garra
 	//channelB, conetado a elevar y bajar brazo completo
 	//channel2A, conectado a la garra
@@ -59,13 +64,19 @@ void setup(void){
 	I2C_Config_SLAVE(0x03);   //Iniciar el I2C como esclavo, enviarle su dirección
 	initUART9600();  //Iniciar UART
 	initUltrasonic(); //Iniciar sensor Ultrasónico
-	PORTB = ~(1 << PORTB4);
 	
-	PCMSK0 |= (1 << 0); //PCINT0
+	PORTB |= ~(1 << PORTB4); 
+	
+	
+	PCMSK0 |= (1 << 0) | (1 << 5) ; //PCINT0
 	PCICR |= (1 << 0); //Mascara de interrupción
-	
+
 	sei();   //Activar interrupciones
 }
+
+
+
+
 
 int main(void)
 {
@@ -165,15 +176,62 @@ int main(void)
 			
 			if (dato_a_recibirI2C == 10)
 			{
-				PORTB = (1 << PORTB4);
+				
 				sistema_activado = 1;
 			}
 			
 			if (dato_a_recibirI2C == 11)
 			{
-				PORTB = ~(1 << PORTB4);
 				sistema_activado = 0;
+				
 			}
+			
+			if (dato_a_recibirI2C == 12)
+			{
+				if (sistema_activado==1)
+				{
+					PORTB |= (1 << PORTB4); 
+				}
+			}
+			
+			if (dato_a_recibirI2C == 13)  //Cuando la caja llegue al final de la banda
+			{
+				if (sistema_activado==1)
+				{
+					 PORTB &= ~(1 << PORTB4);  // Apaga PB4
+				
+				
+				if (cajas==2)
+				{
+					for (brazo = brazo; brazo>=0; brazo--)
+					{
+						convertServo(brazo, channelB);
+						_delay_ms(15);
+						
+					}
+					
+					_delay_ms(20);
+					for (garra = garra; garra<=255; garra++)
+					{
+						convertServo2(garra, channel2A); 
+						_delay_ms(15);
+						
+					}
+					_delay_ms(20);
+
+					for (codo = codo; codo<=250; codo++)
+					{
+						convertServo(codo,channelA);
+						_delay_ms(15);
+						
+					}
+					
+					
+				}
+				}
+			}
+			
+			
 			
 			dato_a_recibirI2C = 0;    //Evitar sumas indebidas
 		}
@@ -181,14 +239,22 @@ int main(void)
 		
 		if (sistema_activado == 1)   //Si el sistema se activo con el RTC
 		{
-			uint16_t distance = measureDistance();
-			dato_a_enviarI2C = distance;
+			 distance = measureDistance();
+			 UART_PrintNum(distance);
+			 
+			 if (distance <= 3)
+			 {
+				 cajas = 1; //Se reconoció caja grande
+			 }
+			 
+			 if (distance <= 6 && distance >=4)
+			 {
+				 cajas = 2; //Se reconoció caja pequeña
+			 }
+	
 		}
 		
-		else
-		{
-			dato_a_enviarI2C = 0;
-		}
+		
 		
 		convertServo2(garra, channel2A);       //Enviar cada dato a los timers para controlar los servos
 		convertServo(brazo, channelB);
@@ -239,11 +305,11 @@ ISR(TWI_vect){           //Vector de interrupción de I2C
 
 ISR(PCINT0_vect){
 	
-
-	if(((PINB) & (1<<0)) == 0){   //Condicional que compara si se detecto gas
+	if(((PINB) & (1<<PINB0)) == 0){   //Condicional que compara si se detecto gas
 		_delay_ms(20);  //antirrebote
 	
 		dato_a_enviarI2C = 1;
+		sistema_activado = 0;
 		
 	
 		while ((PINB & (1 << PINB0)) == 0)   //While para evitar mas pulsos
@@ -254,10 +320,18 @@ ISR(PCINT0_vect){
 	
 	
 	else{
-		dato_a_enviarI2C =1;
+		dato_a_enviarI2C = 0;
 		sistema_activado = 0;
 	}
 	
-	
 }
+
+
+
+
+
+
+
+		
+
 

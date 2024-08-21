@@ -33,12 +33,14 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../ADC \
 ../I2C \
 ../UART
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../ADC/ADC.c \
 ../I2C/I2C.c \
 ../main.c \
 ../UART/UART.c
@@ -51,21 +53,25 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+ADC/ADC.o \
 I2C/I2C.o \
 main.o \
 UART/UART.o
 
 OBJS_AS_ARGS +=  \
+ADC/ADC.o \
 I2C/I2C.o \
 main.o \
 UART/UART.o
 
 C_DEPS +=  \
+ADC/ADC.d \
 I2C/I2C.d \
 main.d \
 UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
+ADC/ADC.d \
 I2C/I2C.d \
 main.d \
 UART/UART.d
@@ -84,6 +90,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+ADC/ADC.o: ../ADC/ADC.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 I2C/I2C.o: ../I2C/I2C.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0

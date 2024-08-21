@@ -120,6 +120,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ADC\ADC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ADC\ADC.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="I2C\I2C.c">
       <SubType>compile</SubType>
     </Compile>
@@ -137,6 +143,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ADC" />
     <Folder Include="I2C" />
     <Folder Include="UART" />
   </ItemGroup>

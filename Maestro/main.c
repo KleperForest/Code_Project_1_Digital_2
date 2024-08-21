@@ -28,16 +28,26 @@
 #define ESCLAVO2 0x02  // Dirección del esclavo 2
 #define ESCLAVO3 0x04  //Dirección del ESP32
 
+// Sensores mendiante I2C Presion BMP280: 0x76 y Temp: 0x38
+
 volatile char receivedChar = 0;    //Variable que almacena el valor del UART
 uint8_t segundos, minutos, horas, dia, fecha, mes, anio, brazo = 0;
 int  horaencendido = 9, minutoencendido = 2, horaapagado = 0, minutoapagado = 0;
 int dato1;
  char buffer[16];
+ 
+ 
 void setup(void);
 void setup(void){
 	cli();  //Apagar interrupciones
 	DDRD = 0xFF;  //Puerto D como salida
 	DDRC = 0x03;  //Puerto C como salida
+	
+	DDRB = 0b00000000; //Entrada sensores infrarrojos
+	PORTB = 0b00000011;		//pull up encendido en PB0 y PB1 
+	
+	PCMSK0 |= (1 << 0)|(1 << 1); //PCINT0, PCINT1
+	PCICR |= (1 << 0); //Mascara de interrupción
 	
 	initUART9600();  //Iniciar UART
     I2C_Config_MASTER(4, 200000);  //Configurar  el atmega328P como maestro de I2C
@@ -348,4 +358,35 @@ ISR(USART_RX_vect)
 	while(!(UCSR0A & (1<<UDRE0)));    //Mientras haya caracteres
 	
 }
+
+
+ISR(PCINT0_vect){
+	if(((PINB) & (1<<PINB0)) == 0){   //Condicional que compara si se detecto una caja
+		_delay_ms(20);  //antirrebote
+		
+		I2C_esclavo(12,ESCLAVO1);
+	UART_PrintNum(2);
+		
+		while ((PINB & (1 << PINB0)) == 0)   //While para evitar mas pulsos
+		{
+			_delay_ms(10);
+		}
+	}
+	
+	
+	if(((PINB) & (1<<PINB1)) == 0){   //Condicional que compara si se detecto una caja
+		_delay_ms(20);  //antirrebote
+		
+		I2C_esclavo(13,ESCLAVO1);
+		UART_PrintNum(1);
+		while ((PINB & (1 << PINB1)) == 0)   //While para evitar mas pulsos
+		{
+			_delay_ms(10);
+		}
+	}
+	
+
+}
+
+
 

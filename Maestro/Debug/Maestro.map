@@ -257,7 +257,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xa84
+.text           0x00000000      0xb50
  *(.vectors)
  .vectors       0x00000000       0x68 D:/Programas/Microchip studio/7.0/Packs/Atmel/ATmega_DFP/2.1.506/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -322,7 +322,6 @@ END GROUP
                 0x000000a2                __vector_12
                 0x000000a2                __bad_interrupt
                 0x000000a2                __vector_6
-                0x000000a2                __vector_3
                 0x000000a2                __vector_23
                 0x000000a2                __vector_25
                 0x000000a2                __vector_11
@@ -361,59 +360,62 @@ END GROUP
  .text.I2C_leer_dato
                 0x000001f4       0x9e I2C/I2C.o
                 0x000001f4                I2C_leer_dato
- .text.setup    0x00000292       0x20 main.o
+ .text.setup    0x00000292       0x38 main.o
                 0x00000292                setup
- .text.main     0x000002b2      0x550 main.o
-                0x000002b2                main
+ .text.main     0x000002ca      0x550 main.o
+                0x000002ca                main
  .text.__vector_18
-                0x00000802       0x28 main.o
-                0x00000802                __vector_18
+                0x0000081a       0x28 main.o
+                0x0000081a                __vector_18
+ .text.__vector_3
+                0x00000842       0xb4 main.o
+                0x00000842                __vector_3
  .text.BCD_to_Decimal
-                0x0000082a       0x16 RTC/RTC.o
-                0x0000082a                BCD_to_Decimal
+                0x000008f6       0x16 RTC/RTC.o
+                0x000008f6                BCD_to_Decimal
  .text.I2C_leerACK
-                0x00000840       0x14 RTC/RTC.o
-                0x00000840                I2C_leerACK
+                0x0000090c       0x14 RTC/RTC.o
+                0x0000090c                I2C_leerACK
  .text.I2C_leerNACK
-                0x00000854       0x14 RTC/RTC.o
-                0x00000854                I2C_leerNACK
+                0x00000920       0x14 RTC/RTC.o
+                0x00000920                I2C_leerNACK
  .text.leer_fecha_hora
-                0x00000868       0xb8 RTC/RTC.o
-                0x00000868                leer_fecha_hora
+                0x00000934       0xb8 RTC/RTC.o
+                0x00000934                leer_fecha_hora
  .text.initUART9600
-                0x00000920       0x36 UART/UART.o
-                0x00000920                initUART9600
+                0x000009ec       0x36 UART/UART.o
+                0x000009ec                initUART9600
  .text.writeTextUART
-                0x00000956       0x22 UART/UART.o
-                0x00000956                writeTextUART
+                0x00000a22       0x22 UART/UART.o
+                0x00000a22                writeTextUART
  .text.writeUART
-                0x00000978        0xe UART/UART.o
-                0x00000978                writeUART
+                0x00000a44        0xe UART/UART.o
+                0x00000a44                writeUART
  .text.UART_PrintNum
-                0x00000986       0x36 UART/UART.o
-                0x00000986                UART_PrintNum
+                0x00000a52       0x36 UART/UART.o
+                0x00000a52                UART_PrintNum
  .text.libgcc.div
-                0x000009bc       0x44 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000009bc                __udivmodsi4
+                0x00000a88       0x44 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000a88                __udivmodsi4
  .text.avr-libc
-                0x00000a00       0x16 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa.o)
-                0x00000a00                __itoa
-                0x00000a00                itoa
+                0x00000acc       0x16 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa.o)
+                0x00000acc                __itoa
+                0x00000acc                itoa
  .text.avr-libc
-                0x00000a16       0x16 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
-                0x00000a16                __itoa_ncheck
+                0x00000ae2       0x16 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
+                0x00000ae2                __itoa_ncheck
  .text.avr-libc
-                0x00000a2c       0x34 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
-                0x00000a2c                __utoa_ncheck
-                0x00000a2e                __utoa_common
+                0x00000af8       0x34 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
+                0x00000af8                __utoa_ncheck
+                0x00000afa                __utoa_common
  .text.avr-libc
-                0x00000a60       0x20 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x00000a60                strrev
-                0x00000a80                . = ALIGN (0x2)
+                0x00000b2c       0x20 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00000b2c                strrev
+                0x00000b4c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000a80        0x0 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000a80                _exit
-                0x00000a80                exit
+ .fini9         0x00000b4c        0x0 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000b4c                _exit
+                0x00000b4c                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -432,11 +434,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000a80        0x4 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000b4c        0x4 d:/programas/microchip studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000a84                _etext = .
+                0x00000b50                _etext = .
 
-.data           0x00800100        0xa load address 0x00000a84
+.data           0x00800100        0xa load address 0x00000b50
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -487,8 +489,8 @@ END GROUP
                 0x0080012b                mes
                 0x0080012c                minutos
                 0x0080012d                PROVIDE (__bss_end, .)
-                0x00000a84                __data_load_start = LOADADDR (.data)
-                0x00000a8e                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000b50                __data_load_start = LOADADDR (.data)
+                0x00000b5a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080012d        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -562,69 +564,69 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0xf8
+.debug_aranges  0x00000000      0x100
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x50 I2C/I2C.o
  .debug_aranges
-                0x00000050       0x30 main.o
+                0x00000050       0x38 main.o
  .debug_aranges
-                0x00000080       0x38 RTC/RTC.o
+                0x00000088       0x38 RTC/RTC.o
  .debug_aranges
-                0x000000b8       0x40 UART/UART.o
+                0x000000c0       0x40 UART/UART.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x173e
+.debug_info     0x00000000     0x189e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 D:/Programas/Microchip studio/7.0/Packs/Atmel/ATmega_DFP/2.1.506/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x275 I2C/I2C.o
- .debug_info    0x00000869      0xa55 main.o
- .debug_info    0x000012be      0x2a1 RTC/RTC.o
- .debug_info    0x0000155f      0x1df UART/UART.o
+ .debug_info    0x00000869      0xbb5 main.o
+ .debug_info    0x0000141e      0x2a1 RTC/RTC.o
+ .debug_info    0x000016bf      0x1df UART/UART.o
 
-.debug_abbrev   0x00000000      0xada
+.debug_abbrev   0x00000000      0xaf4
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 D:/Programas/Microchip studio/7.0/Packs/Atmel/ATmega_DFP/2.1.506/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x160 I2C/I2C.o
- .debug_abbrev  0x00000702      0x19a main.o
- .debug_abbrev  0x0000089c       0xfc RTC/RTC.o
- .debug_abbrev  0x00000998      0x142 UART/UART.o
+ .debug_abbrev  0x00000702      0x1b4 main.o
+ .debug_abbrev  0x000008b6       0xfc RTC/RTC.o
+ .debug_abbrev  0x000009b2      0x142 UART/UART.o
 
-.debug_line     0x00000000      0xbcc
+.debug_line     0x00000000      0xc67
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 D:/Programas/Microchip studio/7.0/Packs/Atmel/ATmega_DFP/2.1.506/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134      0x2f7 I2C/I2C.o
- .debug_line    0x0000042b      0x4cf main.o
- .debug_line    0x000008fa      0x15c RTC/RTC.o
- .debug_line    0x00000a56      0x176 UART/UART.o
+ .debug_line    0x0000042b      0x56a main.o
+ .debug_line    0x00000995      0x15c RTC/RTC.o
+ .debug_line    0x00000af1      0x176 UART/UART.o
 
-.debug_frame    0x00000000      0x210
+.debug_frame    0x00000000      0x268
  *(.debug_frame)
  .debug_frame   0x00000000       0xa0 I2C/I2C.o
- .debug_frame   0x000000a0       0x54 main.o
- .debug_frame   0x000000f4       0x9c RTC/RTC.o
- .debug_frame   0x00000190       0x80 UART/UART.o
+ .debug_frame   0x000000a0       0xac main.o
+ .debug_frame   0x0000014c       0x9c RTC/RTC.o
+ .debug_frame   0x000001e8       0x80 UART/UART.o
 
-.debug_str      0x00000000      0x5a4
+.debug_str      0x00000000      0x5af
  *(.debug_str)
  .debug_str     0x00000000      0x208 D:/Programas/Microchip studio/7.0/Packs/Atmel/ATmega_DFP/2.1.506/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x1f6 I2C/I2C.o
                                 0x237 (size before relaxing)
- .debug_str     0x000003fe      0x134 main.o
-                                0x2e2 (size before relaxing)
- .debug_str     0x00000532       0x35 RTC/RTC.o
+ .debug_str     0x000003fe      0x13f main.o
+                                0x2ed (size before relaxing)
+ .debug_str     0x0000053d       0x35 RTC/RTC.o
                                 0x209 (size before relaxing)
- .debug_str     0x00000567       0x3d UART/UART.o
+ .debug_str     0x00000572       0x3d UART/UART.o
                                 0x202 (size before relaxing)
 
-.debug_loc      0x00000000      0x74b
+.debug_loc      0x00000000      0x936
  *(.debug_loc)
  .debug_loc     0x00000000      0x2ad I2C/I2C.o
- .debug_loc     0x000002ad      0x15c main.o
- .debug_loc     0x00000409      0x236 RTC/RTC.o
- .debug_loc     0x0000063f      0x10c UART/UART.o
+ .debug_loc     0x000002ad      0x347 main.o
+ .debug_loc     0x000005f4      0x236 RTC/RTC.o
+ .debug_loc     0x0000082a      0x10c UART/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -644,12 +646,12 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xb8
+.debug_ranges   0x00000000       0xc0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x40 I2C/I2C.o
- .debug_ranges  0x00000040       0x20 main.o
- .debug_ranges  0x00000060       0x28 RTC/RTC.o
- .debug_ranges  0x00000088       0x30 UART/UART.o
+ .debug_ranges  0x00000040       0x28 main.o
+ .debug_ranges  0x00000068       0x28 RTC/RTC.o
+ .debug_ranges  0x00000090       0x30 UART/UART.o
 
 .debug_macro
  *(.debug_macro)
